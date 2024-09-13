@@ -146,16 +146,22 @@ body {
 }
 .main-content-layout {
     display: grid;
-    grid-template-columns: 1fr 1fr;
     grid-template-rows: 1fr;
-    gap: 1rem;
-
+    grid-template-columns: 3fr 0.1fr;
+    grid-template-areas: 
+    "Projects right-side";
 }
+.Projects {
+    padding: 1rem;
+    grid-area: Projects; /* Updated to match the correct area */
+}
+
 .right-side {
     display: flex;
     flex-direction: column;
-
+    margin-right: 1rem;
 }
+
 .announcement h3{
     margin-bottom: 0.5rem;
     margin-top: 1rem;
@@ -217,7 +223,6 @@ body {
 
 
 /* grid contents */
-
 .Projects h4 {
     padding: 1rem 0rem 1rem 1rem;
     margin-top: 1rem;
@@ -225,8 +230,10 @@ body {
 }
 .card {
     background-color: #ffffff;
-    border-radius: 10px;
     padding: 2rem;
+    box-shadow: 5px 5px 30px rgb(77, 77, 77);
+    border-left: 10px solid #0e7490;
+    border-radius: 0.6rem;
 }
 .card p{
     color: rgb(106, 106, 106);
@@ -235,14 +242,16 @@ body {
     color: black;
 }
 .cards {
-    padding: 1rem;
-    display: grid; /* Define as a grid */
+    overflow: auto;
+    display: grid;
     gap: 2rem;
-    grid-template-columns: 1fr 1fr 1fr; /* 3 equal columns */
-    grid-template-rows: 1fr 1fr; /* 2 rows */
+    padding: 1rem;
+    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
     grid-template-areas: 
     "one two three"
-    "four five six"; /* Correct grid areas */
+    "four five six"
+    "seven eight nine"; /* Correct grid areas */
 }
 
 .one {
@@ -262,4 +271,46 @@ body {
 }
 .six {
     grid-area: six;
+}
+.seven {
+    grid-area: seven;
+}
+.eight {
+    grid-area: eight;
+}
+.nine {
+    grid-area: nine;
+}
+
+
+@media (max-width: 768px) {
+    .main-content-layout {
+        grid-template-columns: 1fr;
+        grid-template-areas: 
+        "Projects"
+        "right-side";
+    }
+
+    .cards {
+        grid-template-areas: 
+        "one"
+        "two"
+        "three"
+        "four"
+        "five"
+        "six"; /* Stack cards vertically on mobile */
+    }
+}
+
+#get-stars{
+    display: flex;
+    align-items: flex-end;
+    justify-content: end;
+    gap: 1rem;
+    margin-top: 2.5rem;
+}
+
+.siter {
+    padding-bottom: 0.6rem;
+    border-bottom: 1px solid rgb(182, 182, 182);
 }
